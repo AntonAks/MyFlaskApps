@@ -1,5 +1,5 @@
 """
-Simple Quiz test 
+Simple Quiz test
 This App start Flask application with simple quiz.
 Questions and answers stored in JSON file
 """
@@ -18,14 +18,17 @@ def index():
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz_page():
     """
-    Function for render quiz test page 
+    Function for render quiz test page
     """
+    if request.method == 'POST':
+        print(request.form['answer'])
+    
     return render_template('quiz_page.html')
 
 
 if __name__ == '__main__':
 
-    app.debug = False
+    app.debug = True
     HOST = os.environ.get('IP', '127.0.0.1')
     PORT = int(os.environ.get('PORT', 8080))
     app.run(host=HOST, port=PORT)
