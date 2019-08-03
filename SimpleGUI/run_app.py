@@ -1,21 +1,23 @@
+"""
+Simple Flask App for test simple GUI.
+This App start Flask application and open default browser.
+"""
 import os
-import psutil
-import platform
 import webbrowser
-from time import sleep
+import platform
+import psutil
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-def start_browser():
-    webbrowser.open("http://127.0.0.1:8080/", new=1, autoraise=True)
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    Index function for render main application
+    """
     context = {'RAM': '',
                'USERS': '',
-               'CPU': '', 
+               'CPU': '',
                'OS': ''
                }
 
@@ -23,14 +25,16 @@ def index():
         context['RAM'] = psutil.virtual_memory()
         context['USERS'] = psutil.users()
         context['CPU'] = psutil.cpu_stats()
-        context['OS'] = f'{platform.system()} - {platform.version()}' 
+        context['OS'] = f'{platform.system()} - {platform.version()}'
 
     return render_template('index.html', context=context)
 
 
 if __name__ == '__main__':
-    app.debug = True
-    host = os.environ.get('IP', '127.0.0.1')
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host=host, port=port)
-    start_browser()
+
+    webbrowser.open("http://127.0.0.1:8080/", new=1, autoraise=True)
+
+    app.debug = False
+    HOST = os.environ.get('IP', '127.0.0.1')
+    PORT = int(os.environ.get('PORT', 8080))
+    app.run(host=HOST, port=PORT)
