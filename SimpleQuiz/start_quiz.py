@@ -21,8 +21,8 @@ def quiz_page():
     Function for render quiz test page
     """
     if request.method == 'POST':
-        print(request.form['answer'])
-    
+        print(request.form['answerOption'])
+
     return render_template('quiz_page.html')
 
 
