@@ -25,6 +25,7 @@ class Question:
     @staticmethod
     def get_questions():
         """
+        imternal method
         loads questions data from json storage
         return: shuffled list of question objects
         """
@@ -41,3 +42,11 @@ class Question:
         shuffled_questions_list = sorted(questions_list, key=lambda k: random.random())
 
         return shuffled_questions_list
+
+    @staticmethod
+    def get_question(question_list):
+        """
+        return: one question object
+        """
+        for question in question_list:
+            yield question
