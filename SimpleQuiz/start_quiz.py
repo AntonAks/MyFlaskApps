@@ -7,6 +7,9 @@ import os
 from flask import Flask, render_template, request
 from tools import Question
 
+questions = Question.get_questions()
+gen = Question.get_question(questions)
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
@@ -18,19 +21,31 @@ def index():
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz_page():
+    from werkzeug.exceptions import BadRequestKeyError
     """
     Function for render quiz test page
     """
-    questions = Question.get_questions()
+
     if request.method == 'GET':
-        gen = Question.get_question(questions)
-        print(gen.__next__())
+        context = {'Question': 'Press NEXT button for start',
+        'Answers':'',
+        'ModeOn':0}
+
 
     if request.method == 'POST':
-        gen = Question.get_question(questions)
-        print(gen.__next__())
-        
-    return render_template('quiz_page.html')
+        try: 
+            answer_option = request.form['answerOption'] 
+        except BadRequestKeyError:
+            answer_option = None
+
+
+        question_obj = gen.__next__()
+        print(answer_option)
+        context = {'Question': question_obj.text_summary,
+        'Answers': question_obj.answers,
+        'ModeOn':1}
+
+    return render_template('quiz_page.html', context=context)
 
 
 if __name__ == '__main__':

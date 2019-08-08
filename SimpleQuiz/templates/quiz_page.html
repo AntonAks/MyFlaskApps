@@ -33,7 +33,7 @@
       <div class="card">
         <div class="card-body">
           <p class="card-text">
-            Question
+            {{context.Question}}
           </p>
         </div>
       </div>
@@ -41,28 +41,37 @@
       <form method="POST" action="/quiz">
         <div class="card mt-1">
           <div class="card-body">
+            {% if context.ModeOn == 1 %}
             <div class="form-check">
               <input class="form-check-input" type="radio" name="answerOption"
                 id="exampleRadios1" value="option1">
               <label class="form-check-label" for="exampleRadios1">
-                Default radio
+                {{context.Answers.a1[0]}}
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="answerOption"
                 id="exampleRadios2" value="option2">
               <label class="form-check-label" for="exampleRadios2">
-                Default radio
+                {{context.Answers.a2[0]}}
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="radio" name="answerOption"
                 id="exampleRadios3" value="option3">
               <label class="form-check-label" for="exampleRadios3">
-                Default radio
+                {{context.Answers.a3[0]}}
               </label>
             </div>
-<hr>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="answerOption"
+                id="exampleRadios3" value="option4">
+              <label class="form-check-label" for="exampleRadios4">
+                {{context.Answers.a4[0]}}
+              </label>
+            </div>
+            {% endif %}
+            <hr>
             <div class="btn-group" role="group">
               <button class="btn btn-primary">Next</button>
             </div>
