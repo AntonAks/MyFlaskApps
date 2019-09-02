@@ -22,7 +22,10 @@ def pass_verify(username, password):
     
     hashed_pw = users.find({"Username": username})[0]["Password"]
 
+    if bcrypt.hashpw(password.encode('utf8'), hashed_pw)==hashed_pw:
+        return True
     
+    return False
 
 
 class Register(Resource):
