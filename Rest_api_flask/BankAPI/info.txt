@@ -1,0 +1,17 @@
+Resources:		URL:			Param:			Method:			Status codes:
+register		/registar		login+pass		POST			200, 301, 302,
+add			/add			login+pass+amount	POST			200, 301, 302, 304
+transfer		/transfer		login+pass+to+amount	POST			200, 301, 302, 303, 304 
+check balance		/balance		login+pass		POST			200, 301, 302,
+take loan		/takeloan		login+pass+amount	POST			200, 301, 302, 304
+pay loan		/payloan		login+pass+amount	POST			200, 301, 302, 303, 304
+
+
+
+ 
+Status codes:
+200 - success
+301 - error, login is incorrect
+302 - error, password is incorrect
+303 - error, not enough money
+304 - error, negative amount
