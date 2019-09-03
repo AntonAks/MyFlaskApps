@@ -1,10 +1,10 @@
-Resources:		URL:			Param:			Method:			Status codes:
-register		/registar		login+pass		POST			200, 301, 302,
-add			/add			login+pass+amount	POST			200, 301, 302, 304
+Resources:		URL:			Param:			        Method:			Status codes:
+register		/registar		login+pass		        POST			200, 301, 302,
+add			    /add			login+pass+amount	    POST			200, 301, 302, 304
 transfer		/transfer		login+pass+to+amount	POST			200, 301, 302, 303, 304 
-check balance		/balance		login+pass		POST			200, 301, 302,
-take loan		/takeloan		login+pass+amount	POST			200, 301, 302, 304
-pay loan		/payloan		login+pass+amount	POST			200, 301, 302, 303, 304
+check balance	/balance		login+pass		        POST			200, 301, 302,
+take loan		/takeloan		login+pass+amount	    POST			200, 301, 302, 304
+pay loan		/payloan		login+pass+amount	    POST			200, 301, 302, 303, 304
 
 
 
